@@ -1,0 +1,14 @@
+--- AMReX_AmrLevel.ori	2025-03-03 21:17:53
++++ AMReX_AmrLevel.cpp	2025-03-03 21:18:01
+@@ -360,7 +360,11 @@
+         dir_final.erase(start_position_to_erase,5);
+     }
+     std::string mt_final = dir_final + "_multi";
++#ifdef AMREX_USE_HDF5_ZLIB
++    std::string compression = "ZLIB@4";
++#else
+     std::string compression = "SZ@0.1";
++#endif
+ 
+     //if (level == parent->finestLevel() && parent->finestLevel() > 0)
+     if (level == parent->finestLevel())
